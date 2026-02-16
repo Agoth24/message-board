@@ -3,14 +3,38 @@ const path = require("node:path")
 const app = express();
 const PORT = 3000;
 
+const messages = [
+    {
+        text: "Hello there!",
+        user: "user1",
+        added: new Date(),
+    },
+    {
+        text: "Hey world!",
+        user: "user2",
+        added: new Date(),
+    }
+]
+
+const navLinks = [
+    {href: "/", text: "Home"},
+    {href: "/new", text: "New Message"},
+]
+
 const assetsPath = path.join(__dirname, "public")
 app.use(express.static(assetsPath));
 
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs");
 
+
+
 app.use("/", (req, res) => {
-    res.render("index");
+    res.render("index", {title: "Mini Messageboard", messages: messages, links: navLinks});
+})
+
+app.use("/new", (req, res) => {
+    res.render("")
 })
 
 
