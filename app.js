@@ -5,13 +5,13 @@ const PORT = 3000;
 
 const messages = [
     {
-        text: "Hello there!",
-        user: "user1",
+        text: "Hello world!",
+        user: "Ada Lovelace",
         added: new Date(),
     },
     {
-        text: "Hey world!",
-        user: "user2",
+        text: "Goodbye world.",
+        user: "Uncle Bob",
         added: new Date(),
     }
 ]
