@@ -18,7 +18,7 @@ const messages = [
 
 const navLinks = [
     {href: "/", text: "Home"},
-    {href: "/new", text: "New Message"},
+    {href: "new", text: "New Message"},
 ]
 
 const assetsPath = path.join(__dirname, "public")
@@ -26,16 +26,25 @@ app.use(express.static(assetsPath));
 
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs");
+app.use(express.urlencoded({extended: true}))
 
+app.get("/new", (req, res) => {
+    res.render("form", {links: navLinks})
+})
 
+app.post("/new", (req, res) => {
+    const name = req.body.name;
+    const message = req.body.message;
+    messages.push({text: message, user: name, added: new Date()})
+    res.redirect("/")
+})
 
 app.use("/", (req, res) => {
     res.render("index", {title: "Mini Messageboard", messages: messages, links: navLinks});
 })
 
-app.use("/new", (req, res) => {
-    res.render("")
-})
+
+
 
 
 app.listen(PORT, (err) => {

@@ -10,22 +10,32 @@ html {
 
 body {
     padding: 1rem 2rem;
+    max-width: 640px;
+    margin: 0 auto;
+    min-height: 100vh;
 }
 
 nav ul{
     display: flex;
     list-style: none;
     gap: 2rem;
+    justify-content: center;
 }
 
 nav a {
     text-decoration: none;
     font-size: 24px;
+    font-weight: 500;
     color: black;
 }
 
 a:hover {
     color: cadetblue;
+}
+
+section {
+    padding: 2rem 0;
+    min-height: 100%;
 }
 
 section > div {
@@ -38,4 +48,35 @@ section > div {
 
 section > p {
     margin-top: .5rem;
+}
+
+form {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 340px;
+    margin: 0 auto;
+    gap: 0.5rem;
+}
+input {
+    min-height: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25pc;
+}
+
+form > button {
+    all:unset;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    background-color: cadetblue;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 0.25rem;
 }
