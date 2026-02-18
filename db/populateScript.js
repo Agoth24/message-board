@@ -5,11 +5,12 @@ const SQL = `
     CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         message VARCHAR(255),
-        name VARCHAR(255)
+        name VARCHAR(255),
+        date TIMESTAMPTZ DEFAULT NOW()
     );
 
-    INSERT INTO messages (name, message) VALUES
-     ('Ada Lovelace', 'Hello World'), ('Uncle Bob', 'Goodbye World :(');
+    INSERT INTO messages (name, message, date) VALUES
+     ('Ada Lovelace', 'Hello World', DEFAULT), ('Uncle Bob', 'Goodbye World :(', DEFAULT);
 `;
 
 const main = async () => {

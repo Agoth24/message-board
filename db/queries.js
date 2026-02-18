@@ -5,7 +5,11 @@ const getAllMessages = async () => {
     return rows;
 }
 
+const postMessage = async ({message, name}) => {
+    await pool.query("INSERT INTO messages (message, name) VALUES ($1, $2)", [message, name])
+}
 
 module.exports = {
     getAllMessages,
+    postMessage,
 }

@@ -1,54 +1,38 @@
 const express = require("express");
-const path = require("node:path")
+const path = require("node:path");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const indexRouter = require("./routes/indexRouter")
+const indexRouter = require("./routes/indexRouter");
 
-const messages = [
-    {
-        text: "Hello world!",
-        user: "Ada Lovelace",
-        added: new Date(),
-    },
-    {
-        text: "Goodbye world.",
-        user: "Uncle Bob",
-        added: new Date(),
-    }
-]
+// const messages = [
+//     {
+//         text: "Hello world!",
+//         user: "Ada Lovelace",
+//         added: new Date(),
+//     },
+//     {
+//         text: "Goodbye world.",
+//         user: "Uncle Bob",
+//         added: new Date(),
+//     }
+// ]
 
-const navLinks = [
-    {href: "/", text: "Home"},
-    {href: "new", text: "New Message"},
-]
-
-const assetsPath = path.join(__dirname, "public")
+const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
-app.set("views", path.join(__dirname, "views"))
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/new", (req, res) => {
-    res.render("form", {links: navLinks})
-})
+app.use("/", indexRouter);
 
-app.post("/new", (req, res) => {
-    const name = req.body.name;
-    const message = req.body.message;
-    messages.push({text: message, user: name, added: new Date()})
-    res.redirect("/")
-})
+app.listen(PORT, () => {
+	console.log(
+		`We're up and running on port ${PORT}\nProcess: ${process.pid}`,
+	);
+});
 
-app.use("/", (req, res) => {
-    res.render("index", {title: "Mini Messageboard", messages: messages, links: navLinks});
-})
-
-app.listen(PORT, (err) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-
-    console.log(`We're up and running on port ${PORT}\nProcess: ${process.pid}`);
-})
+app.on("error", () => {
+	console.error(err);
+	process.exit(1);
+});
