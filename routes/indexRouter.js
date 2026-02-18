@@ -33,4 +33,4 @@ indexRouter.use("/", async (req, res) => {
 	});
 });
 
-module.exports = indexRouter ;
+module.exports = indexRouter;
