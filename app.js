@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("node:path")
 const app = express();
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
+const indexRouter = require("./routes/indexRouter")
 
 const messages = [
     {
@@ -42,10 +43,6 @@ app.post("/new", (req, res) => {
 app.use("/", (req, res) => {
     res.render("index", {title: "Mini Messageboard", messages: messages, links: navLinks});
 })
-
-
-
-
 
 app.listen(PORT, (err) => {
     if (err) {
