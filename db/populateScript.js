@@ -16,7 +16,7 @@ const SQL = `
 const main = async () => {
     console.log("seeding...")
 	const client = new Client({
-		connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:5432/${process.env.DB_NAME}`,
+		connectionString: process.env.DATABASE_URL || `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:5432/${process.env.DB_NAME}`,
 	});
 
 	await client.connect();
