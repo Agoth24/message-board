@@ -24,7 +24,7 @@ indexRouter.post("/new", async (req, res) => {
 	res.redirect("/");
 });
 
-indexRouter.use("/", async (req, res) => {
+indexRouter.get("/", async (req, res) => {
 	const messages = await messageController.getAllMessages();
 	res.render("index", {
 		title: "Mini Messageboard",
