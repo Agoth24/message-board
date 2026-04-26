@@ -24,6 +24,8 @@ indexRouter.post("/new", async (req, res) => {
 	res.redirect("/");
 });
 
+indexRouter.get()
+
 indexRouter.get("/", async (req, res) => {
 	const messages = await messageController.getAllMessages();
 	res.render("index", {
@@ -32,5 +34,7 @@ indexRouter.get("/", async (req, res) => {
 		links: navLinks,
 	});
 });
+
+
 
 module.exports = indexRouter;
